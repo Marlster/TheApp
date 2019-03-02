@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground } from 'react-native';
 import UsernameInput from './components/UsernameInput'
 
 export default class Title extends Component {
@@ -10,10 +10,12 @@ export default class Title extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>  The App </Text>
-        <UsernameInput setUsername={this.props.setUsername}/>
-      </View>
+      <ImageBackground source={require('./assets/titlebackground.jpg')} style={{width: '100%', height: '100%'}}>
+        <View style={styles.container}>
+          <Text>The App</Text>
+          <UsernameInput setUsername={this.props.setUsername}/>
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -21,7 +23,6 @@ export default class Title extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

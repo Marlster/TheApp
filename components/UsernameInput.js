@@ -18,19 +18,18 @@ export default class UsernameInput extends Component {
   render() {
     return (
       <View style={styles.buttonContainer}>
-        <ImageBackground source={'https://cdn.iphonephotographyschool.com/wp-content/uploads/iPhone-Photos-Dramatic-Light-16.jpg'} style={{width: '100%', height: '100%'}}>
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-            placeholder='Enter Username'
-          />
-          <Button
-            onPress={this.onPress}
-            title="Go"
-            accessibilityLabel="Go"
-          />
-        </ImageBackground>
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
+          placeholder='Enter Username'
+          maxLength={20}
+        />
+        <Button
+          onPress={this.onPress}
+          title="Go"
+          accessibilityLabel="Go"
+        />
       </View>
     );
   }
