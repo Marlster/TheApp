@@ -1,19 +1,76 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Button, Alert, AsyncStorage } from 'react-native';
+import { Font } from 'expo';
+import Question from './Question';
+import Title from './Title';
 
-export default class App extends React.Component {
+export default class App extends Component {
+  state = {
+    ready: false,
+    phase: 1,
+    username: '',
+  };
+
+  constructor(props) {
+    super(props);
+    //this.setUsername = this.setUsername.bind(this);
+    //this.setPhase = this.setPhase.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadFonts();
+  }
+
+  async loadFonts() {
+    await Font.loadAsync({
+      GoodTimes: require('./assets/good_times.ttf'),
+    });
+    this.setState({ready: true})
+  }
+
+  setUsername = (name) => {
+    this.setState({username: name, phase: 2});
+  }
+
+  setPhase = (phase) => {
+      this.setState({phase: phase});
+  }
+
+  onPress() {
+    AsyncStorage.setItem()
+    Alert.alert('hi u')
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>App</Text>
-        <Button
-          // onPress={onPressLearnMore}
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-      </View>
-    );
+    if (this.state.ready) {
+      switch(this.state.phase) {
+        default:
+        case 1:
+          return (
+            <Title setUsername={this.setUsername}/>
+          );
+          break;
+        case 2:
+            return (
+              <View style={styles.container}>
+                <Question username={this.state.username} setPhase={this.setPhase}/>
+              </View>
+            );
+          break;
+        case 3:
+          return (
+            <View style={styles.container}>
+              <Text>Submitted</Text>
+            </View>
+          );
+          break;
+      }
+    } else {
+      return (
+        <View style={styles.container}>
+        </View>
+      );
+    }
   }
 }
 
