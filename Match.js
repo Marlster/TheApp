@@ -117,7 +117,7 @@ export default class Match extends Component {
   render() {
     if (this.state.matching) {
       return (
-        <ImageBackground source={require('./assets/ganda.jpg')} style={styles.backgroundStyle}>
+        <ImageBackground source={require('./assets/ganda.png')} style={styles.backgroundStyle}>
           <View style={styles.container}>
             <Text style={styles.textContainer}>Matching. Please Wait.</Text>
           </View>
