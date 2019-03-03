@@ -117,7 +117,7 @@ export default class Match extends Component {
   render() {
     if (this.state.matching) {
       return (
-        <ImageBackground source={require('./assets/chungusss.jpg')} style={styles.backgroundStyle}>
+        <ImageBackground source={require('./assets/ganda.jpg')} style={styles.backgroundStyle}>
           <View style={styles.container}>
             <Text style={styles.textContainer}>Matching. Please Wait.</Text>
           </View>
@@ -129,7 +129,7 @@ export default class Match extends Component {
       );
     } else {
       return (
-        <ImageBackground source={require('./assets/titlebackground.jpg')} style={styles.backgroundStyle}>
+        <ImageBackground source={require('./assets/chungusss.jpg')} style={styles.backgroundStyle}>
           <View style={styles.container}>
             <Tracker distance={this.state.distance} theirUsername={this.state.matchedUsername}/>
             <QRCodeMaker yourId={this.props.userId}/>
