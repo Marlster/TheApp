@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { Constants, Location, Permissions } from 'expo';
 
-export default class Question extends Component {
+export default class Tracker extends Component {
 
   state = {
     distance: 0,
@@ -34,6 +34,11 @@ export default class Question extends Component {
     let location = await Location.getCurrentPositionAsync({});
     await this.setState({ location });
   };
+
+  getDistance() {
+    this._getLocationAsync();
+    let theirLocation = '';
+  }
 
   render() {
     return (

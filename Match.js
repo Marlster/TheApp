@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ImageBackground, Button } from 'react-native';
+import Tracker from './Tracker';
 
 export default class Match extends Component {
 
   state = {
     matchedUsername: '',
-    matching: true
+    matching: true,
+    matchedLocation: null
   }
 
   constructor(props) {
@@ -29,8 +31,10 @@ export default class Match extends Component {
         'Content-Type': 'application/json'          }
     }
     let matchedUsername = await fetch("http://lyrane:5000/find_match", data);
-    if (matchedUsername) {
-      this.setState({matchedUsername: matchedUsername._bodyText});
+    if (matchedUsername._bodyText != '') {
+      console.log(matchedUsername); // logs json for person
+      await this.setState({matchedUsername: matchedUsername.username});
+      await this.setState({matchedLocation: matchedUsername.location});
       this.setState({matching: false});
     } else {
       console.log('No matches found yet :(');
