@@ -119,7 +119,7 @@ export default class Match extends Component {
       return (
         <ImageBackground source={require('./assets/ganda.png')} style={styles.backgroundStyle}>
           <View style={styles.container}>
-            <Text style={styles.textContainer}>Matching. Please Wait.</Text>
+            <Text style={styles.textContainer2}>Matching. Please Wait.</Text>
           </View>
         </ImageBackground>
       );
@@ -153,6 +153,10 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     fontFamily: 'GoodTimes'
+  },
+  textContainer2: {
+    fontFamily: 'GoodTimes',
+    color: 'white'
   },
   backgroundStyle: {
     width: '100%',
