@@ -11,7 +11,7 @@ export default class UsernameInput extends Component {
   }
 
   onPress = () => {
-    Alert.alert('ready?');
+    // Alert.alert('ready?');
     this.props.setUsername(this.state.text);
   }
 

@@ -114,7 +114,7 @@ export default class Question extends Component {
       { this.state.questions.length > 0 && this.state.currentQueId < this.state.questions.length ?
       <View style={styles.container}>
         <View>
-          <Text style={styles.textContainer}>{this.state.questions[this.state.currentQueId].question}</Text>
+          <Text style={styles.textContainer}>{this.state.questions[this.state.currentQueId].question}?</Text>
         </View>
         <LoopQuestions onPressFactory={this.onPressFactory} answers={this.state.questions[this.state.currentQueId].answers}/>
       </View>
