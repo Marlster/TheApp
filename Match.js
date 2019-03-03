@@ -37,9 +37,9 @@ export default class Match extends Component {
     if (response._bodyText != "{}") {
       let matchedUsername = JSON.parse(response._bodyText);
       console.log(matchedUsername); // logs json for person
-      await this.setState({matchedUsername: matchedUsername._bodyText.username});
-      await this.setState({matchedLocation: matchedUsername._bodyText.location});
-      await this.setState({matchedId: matchedUsername._bodyText._id});
+      await this.setState({matchedUsername: matchedUsername.username});
+      await this.setState({matchedLocation: matchedUsername.location});
+      await this.setState({matchedId: matchedUsername._id.$oid});
       console.log(this.state.matchedUsername);
       console.log(this.state.matchedLocation);
       let data = {
