@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, Button, Alert, AsyncStorage } from 'react-nativ
 import { Font } from 'expo';
 import Question from './Question';
 import Title from './Title';
+import Match from './Match';
 
 export default class App extends Component {
   state = {
     ready: false,
     phase: 1,
+    userId: '',
     username: '',
   };
 
@@ -32,8 +34,8 @@ export default class App extends Component {
     this.setState({username: name, phase: 2});
   }
 
-  setPhase = (phase) => {
-      this.setState({phase: phase});
+  setPhase = (phase, newId) => {
+      this.setState({phase: phase, userId: newId});
   }
 
   onPress() {
@@ -59,9 +61,10 @@ export default class App extends Component {
           break;
         case 3:
           return (
-            <View style={styles.container}>
-              <Text>Submitted</Text>
-            </View>
+            <Match userId={this.state.userId} />
+            // <View style={styles.container}>
+            //   <Text>Submitted</Text>
+            // </View>
           );
           break;
       }

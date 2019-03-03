@@ -67,7 +67,7 @@ export default class Question extends Component {
 
   onPressFactory (answer) {
     let onPress = async function () {
-      Alert.alert(answer);
+      // Alert.alert(answer);
       let id = this.state.currentQueId;
       this.setState(prevState => ({
         answers: [...prevState.answers, answer]}));
@@ -86,8 +86,9 @@ export default class Question extends Component {
             'Accept':       'application/json',
             'Content-Type': 'application/json'          }
         }
-        await fetch("http://lyrane:5000/user", data);
-        await this.props.setPhase(3);
+        let response = await fetch("http://lyrane:5000/user", data);
+        let newId =  response._bodyText;
+        await this.props.setPhase(3, newId);
       }
     }
     onPress = onPress.bind(this);
@@ -135,10 +136,6 @@ export default class Question extends Component {
         <View>
           <Text style={styles.textContainer}>Question</Text>
         </View>
-        <Text>
-        {this.state.currentQueId}
-        {this.state.questions.length}
-        </Text>
         <LoopQuestions onPressFactory={this.onPressFactory} answers={this.state.questions[this.state.currentQueId].answers}/>
       </View>
        :

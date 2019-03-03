@@ -12,7 +12,7 @@ export default class Title extends Component {
     return (
       <ImageBackground source={require('./assets/titlebackground.jpg')} style={{width: '100%', height: '100%'}}>
         <View style={styles.container}>
-          <Text>The App</Text>
+          <Text style={styles.textContainer}>The App</Text>
           <UsernameInput setUsername={this.props.setUsername}/>
         </View>
       </ImageBackground>
@@ -25,5 +25,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  textContainer: {
+    fontFamily: 'GoodTimes'
   },
 });
