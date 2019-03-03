@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 4708,
-  "expoServerNgrokUrl": "https://mh-mmr.anonymous.theapp.exp.direct",
-  "packagerNgrokUrl": "https://packager.mh-mmr.anonymous.theapp.exp.direct",
-  "ngrokPid": 7336
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

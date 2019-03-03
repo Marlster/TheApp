@@ -110,6 +110,10 @@ export default class Match extends Component {
     }
   }
 
+  onPress = () => {
+    this.setState({scannerOn: true});
+  }
+
   render() {
     if (this.state.matching) {
       return (
@@ -119,13 +123,19 @@ export default class Match extends Component {
           </View>
         </ImageBackground>
       );
+    } else if (this.state.scannerOn) {
+      <Scanner theirId={this.state.matchedId} setPhase={this.props.setPhase}/>
     } else {
       return (
         <ImageBackground source={require('./assets/titlebackground.jpg')} style={styles.backgroundStyle}>
           <View style={styles.container}>
             <Tracker distance={this.state.distance} theirUsername={this.state.matchedUsername}/>
             <QRCodeMaker yourId={this.props.userId}/>
-            <Scanner theirId={this.state.matchedId} setPhase={this.props.setPhase}/>
+            <Button
+              onPress={this.onPress}
+              title="Scan"
+              accessibilityLabel="Scan"
+            />
           </View>
           </ImageBackground>
       );
