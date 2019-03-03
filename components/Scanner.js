@@ -32,6 +32,11 @@ export default class Scanner extends Component {
   }
 
   handleBarCodeScanned = ({ type, data }) => {
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);/
+    if (data === this.props.theirId) {
+      alert(`Success! You can now be friends!`);
+      this.props.setPhase(1, '');
+    } else {
+      alert('Oops! That wasn\'t the right person! Try again!');
+    }
   }
 }

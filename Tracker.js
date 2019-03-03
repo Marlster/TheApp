@@ -64,6 +64,7 @@ export default class Tracker extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.textContainer}>You are {this.state.distance} metres away from {this.props.theirUsername}!</Text>
+        <Text style={styles.textContainer}>Now find them! Once you do, scan their QR Code or get them to scan yours:</Text>
       </View>
     );
   }

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ImageBackground, Button } from 'react-native';
 import Tracker from './Tracker';
+import QRCode from './components/QRCode';
+import Scanner from './components/Scanner';
 
 export default class Match extends Component {
 
   state = {
+    matchedId: '',
     matchedUsername: '',
     matching: true,
     matchedLocation: null
@@ -36,6 +39,7 @@ export default class Match extends Component {
       console.log(matchedUsername); // logs json for person
       await this.setState({matchedUsername: matchedUsername._bodyText.username});
       await this.setState({matchedLocation: matchedUsername._bodyText.location});
+      await this.setState({matchedId: matchedUsername._bodyText._id});
       console.log(this.state.matchedUsername);
       console.log(this.state.matchedLocation);
       let data = {
@@ -73,6 +77,8 @@ export default class Match extends Component {
           <View style={styles.container}>
             <Text style={styles.textContainer}>You have been matched with {this.state.matchedUsername}!</Text>
             <Tracker theirLocation={this.state.matchedLocation} theirUsername={this.state.matchedUsername}/>
+            <QRCode yourId={this.props.userId}/>
+            <Scanner theirId={this.state.matchedId} setPhase={this.props.setPhase}/>
           </View>
         </ImageBackground>
       );
