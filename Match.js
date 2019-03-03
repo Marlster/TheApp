@@ -40,8 +40,6 @@ export default class Match extends Component {
       await this.setState({matchedUsername: matchedUsername.username});
       await this.setState({matchedLocation: matchedUsername.location});
       await this.setState({matchedId: matchedUsername._id.$oid});
-      console.log(this.state.matchedUsername);
-      console.log(this.state.matchedLocation);
       let data = {
         method: 'POST',
         credentials: 'same-origin',
@@ -77,7 +75,7 @@ export default class Match extends Component {
           <View style={styles.container}>
             <Text style={styles.textContainer}>You have been matched with {this.state.matchedUsername}!</Text>
             <Tracker theirLocation={this.state.matchedLocation} theirUsername={this.state.matchedUsername}/>
-            <QRCode yourId={this.props.userId}/>
+            <QRCodeMaker yourId={this.props.userId}/>
             <Scanner theirId={this.state.matchedId} setPhase={this.props.setPhase}/>
           </View>
         </ImageBackground>
