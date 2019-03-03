@@ -24,7 +24,7 @@ export default class Match extends Component {
       credentials: 'same-origin',
       mode: 'same-origin',
       body: JSON.stringify({
-        id: this.props.userId,// need to get username
+        id: this.props.userId,
       }),
       headers: {
         'Accept':       'application/json',
@@ -35,6 +35,18 @@ export default class Match extends Component {
       console.log(matchedUsername); // logs json for person
       await this.setState({matchedUsername: matchedUsername._bodyText.username});
       await this.setState({matchedLocation: matchedUsername._bodyText.location});
+      let data = {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'same-origin',
+        body: JSON.stringify({
+          id: this.props.userId,
+        }),
+        headers: {
+          'Accept':       'application/json',
+          'Content-Type': 'application/json'          }
+      }
+      fetch("http://lyrane:5000/done", data);
       this.setState({matching: false});
     } else {
       console.log('No matches found yet :(');
