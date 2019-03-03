@@ -124,7 +124,9 @@ export default class Match extends Component {
         </ImageBackground>
       );
     } else if (this.state.scannerOn) {
-      <Scanner theirId={this.state.matchedId} setPhase={this.props.setPhase}/>
+      return (
+        <Scanner theirId={this.state.matchedId} setPhase={this.props.setPhase}/>
+      );
     } else {
       return (
         <ImageBackground source={require('./assets/titlebackground.jpg')} style={styles.backgroundStyle}>
