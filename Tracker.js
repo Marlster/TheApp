@@ -57,6 +57,7 @@ export default class Tracker extends Component {
     let yourLong = this.state.location.coords.longitude;
     let theirLong = this.props.theirLocation.coords.longitude;
     let distance = this.measure(yourLat, yourLong, theirLat, theirLong);
+    console.log(distance);
     this.setState({distance: distance});
   }
 

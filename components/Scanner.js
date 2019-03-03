@@ -10,6 +10,7 @@ export default class Scanner extends Component {
   async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
+    console.log('scanner be scannin');
     }
 
   render() {

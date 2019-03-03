@@ -36,6 +36,7 @@ export default class Match extends Component {
     let response = await fetch("http://lyrane:5000/find_match", data);
     if (response._bodyText != "{}") {
       let matchedUsername = JSON.parse(response._bodyText);
+      console.log(matchedUsername);
       await this.setState({matchedUsername: matchedUsername.username});
       await this.setState({matchedLocation: matchedUsername.location});
       await this.setState({matchedId: matchedUsername._id.$oid});
@@ -44,13 +45,13 @@ export default class Match extends Component {
         credentials: 'same-origin',
         mode: 'same-origin',
         body: JSON.stringify({
-          id: this.props.userId,
+          id: this.state.matchedId,
         }),
         headers: {
           'Accept':       'application/json',
           'Content-Type': 'application/json'          }
       }
-      fetch("http://lyrane:5000/done", data);
+      await fetch("http://lyrane:5000/done", data);
       this.setState({matching: false});
     } else {
       console.log('No matches found yet :(');

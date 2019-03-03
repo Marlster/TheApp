@@ -31,6 +31,9 @@ export default class App extends Component {
   }
 
   setUsername = (name) => {
+    if (name === '') {
+      name = 'Anon';
+    }
     this.setState({username: name, phase: 2});
   }
 
