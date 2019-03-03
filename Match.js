@@ -30,11 +30,14 @@ export default class Match extends Component {
         'Accept':       'application/json',
         'Content-Type': 'application/json'          }
     }
-    let matchedUsername = await fetch("http://lyrane:5000/find_match", data);
-    if (matchedUsername._bodyText != "{}") {
+    let response = await fetch("http://lyrane:5000/find_match", data);
+    if (response._bodyText != "{}") {
+      let matchedUsername = JSON.parse(response._bodyText);
       console.log(matchedUsername); // logs json for person
       await this.setState({matchedUsername: matchedUsername._bodyText.username});
       await this.setState({matchedLocation: matchedUsername._bodyText.location});
+      console.log(this.state.matchedUsername);
+      console.log(this.state.matchedLocation);
       let data = {
         method: 'POST',
         credentials: 'same-origin',
