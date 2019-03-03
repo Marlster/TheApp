@@ -10,7 +10,8 @@ export default class Match extends Component {
     matchedId: '',
     matchedUsername: '',
     matching: true,
-    matchedLocation: null
+    matchedLocation: null,
+    scannerOn: false
   }
 
   constructor(props) {
@@ -60,23 +61,43 @@ export default class Match extends Component {
     }
   }
 
+  onPress = () => {
+    let currentState = this.state.scannerOn;
+    this.setState({scannerOn: !currentState});
+  }
+
   render() {
     if (this.state.matching) {
       return (
-        <ImageBackground source={require('./assets/titlebackground.jpg')} style={styles.backgroundStyle}>
+        <ImageBackground source={require('./assets/ganda.png')} style={styles.backgroundStyle}>
           <View style={styles.container}>
-            <Text style={styles.textContainer}>Matching. Please Wait.</Text>
+            <Text style={styles.textContainer}>Matching.~{"\n"} Please Wait.</Text>
           </View>
         </ImageBackground>
       );
+    } else if (this.state.scannerOn) {
+      return (
+        // <View style={styles.buttonStyle}>
+          <Scanner theirId={this.state.matchedId} theirUsername={this.state.matchedUsername} theirsetPhase={this.props.setPhase}/>
+          /*{ <Button
+            onPress={this.onPress}
+            title="Scan QR Code"
+            accessibilityLabel="Scan QR Code"
+          /> }*/
+        // </View>
+      );
     } else {
       return (
-        <ImageBackground source={require('./assets/titlebackground.jpg')} style={styles.backgroundStyle}>
+        <ImageBackground source={require('./assets/chungusss.jpg')} style={styles.backgroundStyle}>
           <View style={styles.container}>
-            <Text style={styles.textContainer}>You have been matched with {this.state.matchedUsername}!</Text>
+
             <Tracker theirLocation={this.state.matchedLocation} theirUsername={this.state.matchedUsername}/>
             <QRCodeMaker yourId={this.props.userId}/>
-            <Scanner theirId={this.state.matchedId} setPhase={this.props.setPhase}/>
+            <Button
+              onPress={this.onPress}
+              title="Scan QR Code"
+              accessibilityLabel="Scan QR Code"
+            />
           </View>
         </ImageBackground>
       );
@@ -91,7 +112,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textContainer: {
-    fontFamily: 'GoodTimes'
+    fontFamily: 'GoodTimes',
+    color: 'white',
+    fontSize: 20
+  },
+  buttonStyle: {
+    margin: 20
   },
   backgroundStyle: {
     width: '100%',

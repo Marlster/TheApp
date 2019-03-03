@@ -20,6 +20,7 @@ export default class Tracker extends Component {
         errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
       });
     } else {
+      this._getLocationAsync();
       this.getDistance();
     }
   }
@@ -53,8 +54,8 @@ export default class Tracker extends Component {
     console.log(this.props.theirLocation);
     console.log(this.props.theirUsername);
     let yourLat = this.state.location.coords.latitude;
-    let theirLat = this.props.theirLocation.coords.latitude;
     let yourLong = this.state.location.coords.longitude;
+    let theirLat = this.props.theirLocation.coords.latitude;
     let theirLong = this.props.theirLocation.coords.longitude;
     let distance = this.measure(yourLat, yourLong, theirLat, theirLong);
     console.log(distance);

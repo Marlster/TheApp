@@ -34,7 +34,7 @@ export default class Scanner extends Component {
 
   handleBarCodeScanned = ({ type, data }) => {
     if (data === this.props.theirId) {
-      alert(`Success! You can now be friends!`);
+      alert(`Success! You and' + this.props.theirUsername + 'can now be friends!`);
       this.props.setPhase(1, '');
     } else {
       alert('Oops! That wasn\'t the right person! Try again!');
