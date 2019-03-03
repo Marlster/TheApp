@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {AppRegistry, StyleSheet, View, TextInput} from 'react-native';
 import QRCode from 'react-native-qrcode';
 
-export default class QRCode extends Component {
+export default class QRCodeMaker extends Component {
   // state = {
   //   text: 'default',
   // };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, ImageBackground, Button } from 'react-native';
 import Tracker from './Tracker';
-import QRCode from './components/QRCode';
+import QRCodeMaker from './components/QRCode';
 import Scanner from './components/Scanner';
 
 export default class Match extends Component {
