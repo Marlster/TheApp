@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {AppRegistry, StyleSheet, View, TextInput} from 'react-native';
-import QRCode from 'react-native-qrcode';
+import QRCode from 'react-native-qrcode-svg'
 
 export default class QRCodeMaker extends Component {
   // state = {
@@ -13,8 +13,8 @@ export default class QRCodeMaker extends Component {
         <QRCode
           value={this.props.yourId}
           size={200}
-          bgColor='#746165'
-          fgColor='#ECDDFE'/>
+          backgroundColor='#746165'
+          color='#ECDDFE'/>
       </View>
     );
   };

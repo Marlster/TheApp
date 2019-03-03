@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Alert, AsyncStorage } from 'react-native';
-import { Font } from 'expo';
+import { Asset, Font } from 'expo';
 import Question from './Question';
 import Title from './Title';
 import Match from './Match';
+
+function cacheImages(images) {
+  return images.map(image => {
+    if (typeof image === 'string') {
+      return Image.prefetch(image);
+    } else {
+      return Asset.fromModule(image).downloadAsync();
+    }
+  });
+}
 
 export default class App extends Component {
   state = {
@@ -20,13 +30,31 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.loadFonts();
+    this.loadAssets();
   }
+
 
   async loadFonts() {
     await Font.loadAsync({
       GoodTimes: require('./assets/good_times.ttf'),
     });
+  }
+
+  async loadImages() {
+    const imageAssets = cacheImages([
+      require('./assets/icon.png'),
+      require('./assets/splash.png'),
+      require('./assets/titlebackground.jpg'),
+      require('./assets/chungusss.jpg'),
+      require('./assets/ganda.png'),
+      require('./assets/Questions.jpg'),
+    ]);
+
+    await Promise.all([...imageAssets]);
+  }
+
+  async loadAssets() {
+    await Promise.all([this.loadFonts(), this.loadImages()])
     this.setState({ready: true})
   }
 
