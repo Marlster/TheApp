@@ -4,7 +4,8 @@ import { StyleSheet, View, Text, ImageBackground, Button } from 'react-native';
 export default class Match extends Component {
 
   state = {
-    matchedUsername: ''
+    matchedUsername: '',
+    matching: true
   }
 
   constructor(props) {
@@ -16,7 +17,6 @@ export default class Match extends Component {
   }
 
   getMatch = async () => {
-    console.log(this.props.userId);
     let data = {
       method: 'POST',
       credentials: 'same-origin',
@@ -30,21 +30,33 @@ export default class Match extends Component {
     }
     let matchedUsername = await fetch("http://lyrane:5000/find_match", data);
     if (matchedUsername) {
-      this.setState({matchedUsername: matchedUsername});
+      this.setState({matchedUsername: matchedUsername._bodyText});
+      this.setState({matching: false});
     } else {
-      console.log('No matches found :(');
+      console.log('No matches found yet :(');
+      setTimeout(() => {this.getMatch()}, 5000); // waits 5 seconds
+      // this.props.setPhase(1, '');
     }
   }
 
-
   render() {
-    return (
-      <ImageBackground source={require('./assets/titlebackground.jpg')} style={{width: '100%', height: '100%'}}>
-        <View style={styles.container}>
-          <Text style={styles.textContainer}>The App</Text>
-        </View>
-      </ImageBackground>
-    );
+    if (this.state.matching) {
+      return (
+        <ImageBackground source={require('./assets/titlebackground.jpg')} style={styles.backgroundStyle}>
+          <View style={styles.container}>
+            <Text style={styles.textContainer}>Matching. Please Wait.</Text>
+          </View>
+        </ImageBackground>
+      );
+    } else {
+      return (
+        <ImageBackground source={require('./assets/titlebackground.jpg')} style={styles.backgroundStyle}>
+          <View style={styles.container}>
+            <Text style={styles.textContainer}>You have been matched with {this.state.matchedUsername}!</Text>
+          </View>
+        </ImageBackground>
+      );
+    }
   }
 }
 
@@ -56,5 +68,9 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     fontFamily: 'GoodTimes'
+  },
+  backgroundStyle: {
+    width: '100%',
+    height: '100%'
   },
 });

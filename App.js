@@ -61,7 +61,7 @@ export default class App extends Component {
           break;
         case 3:
           return (
-            <Match userId={this.state.userId} />
+            <Match userId={this.state.userId} setPhase={this.setPhase}/>
             // <View style={styles.container}>
             //   <Text>Submitted</Text>
             // </View>
