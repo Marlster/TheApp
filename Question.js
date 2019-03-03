@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Alert, AsyncStorage, Platform } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, Platform } from 'react-native';
 import { Constants, Location, Permissions } from 'expo';
 
 class LoopQuestions extends Component {
@@ -9,22 +9,22 @@ class LoopQuestions extends Component {
   }
 
   render() {
-  const answerArray = []
-  for (let answer of this.props.answers) {
-    answerArray.push(
+    const answerArray = []
+    for (let answer of this.props.answers) {
+      answerArray.push(
         <Button
           key={answer}
           onPress={this.props.onPressFactory(answer)}
           title={answer}
         />
+      );
+    }
+    return (
+      <View style={styles.buttonContainer}>
+        {answerArray}
+      </View>
     );
   }
-  return (
-    <View style={styles.buttonContainer}>
-      {answerArray}
-    </View>
-  );
-}
 }
 
 
@@ -95,26 +95,6 @@ export default class Question extends Component {
     return onPress;
   }
 
-  _storeData = async () => {
-    try {
-      await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
-    } catch (error) {
-      // Error saving data
-    }
-  };
-
-  _retrieveData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('TASKS');
-      if (value !== null) {
-        // We have data!!
-        console.log(value);
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-  };
-
   getQuestions = async () => {
     try {
       const response = await fetch("http://lyrane:5000/questions.json");
@@ -134,7 +114,7 @@ export default class Question extends Component {
       { this.state.questions.length > 0 && this.state.currentQueId < this.state.questions.length ?
       <View style={styles.container}>
         <View>
-          <Text style={styles.textContainer}>Question</Text>
+          <Text style={styles.textContainer}>{this.state.questions[this.state.currentQueId].question}</Text>
         </View>
         <LoopQuestions onPressFactory={this.onPressFactory} answers={this.state.questions[this.state.currentQueId].answers}/>
       </View>
