@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Alert, Platform, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, Platform } from 'react-native';
 import { Constants, Location, Permissions } from 'expo';
 
 class LoopQuestions extends Component {
@@ -110,18 +110,18 @@ export default class Question extends Component {
 
   render() {
     return (
+      <View>
+      { this.state.questions.length > 0 && this.state.currentQueId < this.state.questions.length ?
+      <View style={styles.container}>
         <View>
-        { this.state.questions.length > 0 && this.state.currentQueId < this.state.questions.length ?
-        <View style={styles.container}>
-          <View>
-            <Text style={styles.textContainer}>{this.state.questions[this.state.currentQueId].question}?</Text>
-          </View>
-          <LoopQuestions onPressFactory={this.onPressFactory} answers={this.state.questions[this.state.currentQueId].answers}/>
+          <Text style={styles.textContainer}>{this.state.questions[this.state.currentQueId].question}?</Text>
         </View>
-        :
-        null
-      }
+        <LoopQuestions onPressFactory={this.onPressFactory} answers={this.state.questions[this.state.currentQueId].answers}/>
       </View>
+       :
+       null
+    }
+    </View>
     );
   }
 }
