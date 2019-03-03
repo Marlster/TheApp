@@ -5,7 +5,7 @@ import UsernameInput from './components/UsernameInput'
 export default class Title extends Component {
 
   state = {
-    onlineUsers = 0
+    onlineUsers: 0,
   }
 
   constructor(props) {

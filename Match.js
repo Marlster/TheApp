@@ -11,15 +11,11 @@ export default class Match extends Component {
     matchedId: '',
     matchedUsername: '',
     matching: true,
-<<<<<<< HEAD
     matchedLocation: null,
     scannerOn: false,
     distance: 0,
     location: null,
     errorMessage: null
-=======
-    matchedLocation: null
->>>>>>> e43aacbca019ba0b989526ef3f6aadde1fd1ceb0
   }
 
   constructor(props) {
