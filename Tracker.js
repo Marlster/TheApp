@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, Platform } from 'react-native';
 import { Constants, Location, Permissions } from 'expo';
 
 export default class Tracker extends Component {
