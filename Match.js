@@ -31,10 +31,10 @@ export default class Match extends Component {
         'Content-Type': 'application/json'          }
     }
     let matchedUsername = await fetch("http://lyrane:5000/find_match", data);
-    if (matchedUsername._bodyText != '') {
+    if (matchedUsername._bodyText != "{}") {
       console.log(matchedUsername); // logs json for person
-      await this.setState({matchedUsername: matchedUsername.username});
-      await this.setState({matchedLocation: matchedUsername.location});
+      await this.setState({matchedUsername: matchedUsername._bodyText.username});
+      await this.setState({matchedLocation: matchedUsername._bodyText.location});
       this.setState({matching: false});
     } else {
       console.log('No matches found yet :(');
@@ -57,6 +57,7 @@ export default class Match extends Component {
         <ImageBackground source={require('./assets/titlebackground.jpg')} style={styles.backgroundStyle}>
           <View style={styles.container}>
             <Text style={styles.textContainer}>You have been matched with {this.state.matchedUsername}!</Text>
+            <Tracker theirLocation={this.state.matchedLocation} theirUsername={this.state.matchedUsername}/>
           </View>
         </ImageBackground>
       );
