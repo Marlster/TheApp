@@ -48,12 +48,12 @@ export default class Tracker extends Component {
   }
 
   getDistance = async () => {
-    this._getLocationAsync();
+    await this._getLocationAsync();
     console.log(this.state.location);
     console.log(this.props.theirLocation);
     console.log(this.props.theirUsername);
-    let yourLat = this.state.location.coords.lattitude;
-    let theirLat = this.props.theirLocation.location.coords.lattitude;
+    let yourLat = this.state.location.coords.latitude;
+    let theirLat = this.props.theirLocation.location.coords.latitude;
     let yourLong = this.state.location.coords.longitude;
     let theirLong = this.props.theirLocation.location.coords.longitude;
     let distance = this.measure(yourLat, yourLong, theirLat, theirLong);
