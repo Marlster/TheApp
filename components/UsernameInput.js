@@ -19,7 +19,7 @@ export default class UsernameInput extends Component {
     return (
       <View style={styles.buttonContainer}>
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={{height: 40, borderColor: 'gray', borderWidth: 1, fontFamily: 'GoodTimes',}}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
           placeholder='Enter Username'
