@@ -13,8 +13,8 @@ export default class QRCodeMaker extends Component {
         <QRCode
           value={this.props.yourId}
           size={128}
-          backgroundColor='#746165'
-          color='#ECDDFE'/>
+          backgroundColor='#ECDDFE'
+          color='#746165'/>
       </View>
     );
   };
